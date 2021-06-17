@@ -1,32 +1,132 @@
+import { useState } from "react";
+import CheckBoxesGroup from "./CheckBoxesGroup";
+import RadioButtonsGroup from "./RadioButtonsGroup";
+
+const bestFeaturesCheckboxes = [
+  {
+    name: "bestFeatures",
+    value: "colour",
+    text: "It's yellow!",
+  },
+  {
+    name: "bestFeatures",
+    value: "sound",
+    text: "It Squeaks!",
+  },
+  {
+    name: "bestFeatures",
+    value: "logo",
+    text: "It has a logo!",
+  },
+  {
+    name: "bestFeatures",
+    value: "size",
+    text: "It's big!",
+  },
+];
+
+//cahnge
+const worstFeaturesCheckBoxes = [
+  {
+    name: "worstFeatures",
+    value: "colour",
+    text: "It's yellow!",
+  },
+  {
+    name: "worstFeatures",
+    value: "sound",
+    text: "It Squeaks!",
+  },
+  {
+    name: "worstFeatures",
+    value: "logo",
+    text: "It has a logo!",
+  },
+  {
+    name: "worstFeatures",
+    value: "size",
+    text: "It's big!",
+  },
+];
+//change
+const spendTimeCheckboxes = [
+  {
+    name: "spendTimeFeatures",
+    value: "water1",
+    text: "Swimming!",
+  },
+  {
+    name: "spendTimeFeatures",
+    value: "water2",
+    text: "Bathing!",
+  },
+  {
+    name: "spendTimeFeatures",
+    value: "speak",
+    text: "Chatting!",
+  },
+  {
+    name: "spendTimeFeatures",
+    value: "dontSpeak",
+    text: "I don't speak to it - its a big of cheap plastic!",
+  },
+];
 export default function Form() {
+  const [bestFeatures, setBestFeatures] = useState([]);
+  const [worstFeatures, setWorstFeatures] = useState([]);
+  const [spendTimeFeatures, setSpendTimeFeatures] = useState([]);
+
+  //get handle fucntion to workwith respective state
+
+  function handleBestFeatures(event) {
+    console.log("event", event.target.name, event.target.value);
+  }
+
+  function handleWorstFeatures(event) {
+    console.log("event", event.target.name, event.target.value);
+  }
+  function handleSpendTimeFeatures(event) {
+    console.log("event", event.target.name, event.target.value);
+  }
+  console.log("state", bestFeatures, worstFeatures, spendTimeFeatures);
+
   return (
-    <form class="form">
+    <form className="form">
       <h2>Tell us what you think about your rubber duck!</h2>
-      <div class="form__group">
+      <div className="form__group">
         <h3>
           What would you say that are the best features of your rubber duck?
         </h3>
-        {/* <!-- checkboxes go here --> */}
+        <CheckBoxesGroup
+          checkboxes={bestFeaturesCheckboxes}
+          handleChange={handleBestFeatures}
+        />
       </div>
-      <div class="form__group">
+      <div className="form__group">
         <h3>What would you say that are the worst bits of your rubber duck?</h3>
-        {/* <!-- Checkboxes go here --> */}
+        <CheckBoxesGroup
+          checkboxes={worstFeaturesCheckBoxes}
+          handleChange={handleWorstFeatures}
+        />
       </div>
-      <div class="form__group radio">
+      <div className="form__group radio">
         <h3>How do you rate your rubber duck consistency?</h3>
-        {/* <!-- radio buttons go here --> */}
+        <RadioButtonsGroup />
       </div>
-      <div class="form__group radio">
+      <div className="form__group radio">
         <h3>How do you rate your rubber duck colour?</h3>
-        {/* <!-- Radio inputs go here --> */}
+        <RadioButtonsGroup />
       </div>
-      <div class="form__group radio">
+      <div className="form__group radio">
         <h3>How do you rate your rubber duck logo?</h3>
-        {/* <!-- radio inputs go here --> */}
+        <RadioButtonsGroup />
       </div>
-      <div class="form__group">
+      <div className="form__group">
         <h3>How do you like to spend time with your rubber duck</h3>
-        {/* <!-- checkboxes go here --> */}
+        <CheckBoxesGroup
+          checkboxes={spendTimeCheckboxes}
+          handleChange={handleSpendTimeFeatures}
+        />
       </div>
       <label>
         What else have you got to say about your rubber duck?
@@ -40,7 +140,7 @@ export default function Form() {
         Leave us your email pretty please??
         <input type="email" name="email" value="" />
       </label>
-      <input class="form__submit" type="submit" value="Submit Survey!" />
+      <input className="form__submit" type="submit" value="Submit Survey!" />
     </form>
   );
 }
